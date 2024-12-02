@@ -1,6 +1,5 @@
 function toCalculateNetpay() {
     let grossPay = prompt("enter taxpayer gross pay:", "0");
-    let taxRate_percentage;
     let paye;
     let nhifContribution;
     let nssfContribution;
