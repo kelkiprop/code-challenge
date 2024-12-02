@@ -18,4 +18,4 @@ else{
 }
 return message;
 }
-ToTestSpeed()
+console.log(ToTestSpeed());

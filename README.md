@@ -89,11 +89,11 @@ The function works for different salary ranges and applies the appropriate tax r
 The `toCalculateNetpay()` function takes the gross pay as input, calculates the deductions (PAYE, NHIF, and NSSF), and adds the tax relief. It then returns and logs the net pay.
 
 ### Tax Ranges:
-- **Gross pay ≤ 24,000**: PAYE at 10%, NHIF at 2.5%, NSSF at 6%.
-- **Gross pay between 24,001 and 32,333**: PAYE at 25%, NHIF at 2.5%, NSSF at 6%.
-- **Gross pay between 32,334 and 500,000**: PAYE at 30%, NHIF at 2.5%, NSSF at 6%.
-- **Gross pay between 500,001 and 800,000**: PAYE at 32.5%, NHIF at 2.5%, NSSF at 6%.
-- **Gross pay > 800,000**: PAYE at 35%, NHIF at 2.5%, NSSF at 6%.
+- **Gross pay ≤ 24,000**: PAYE at 10%, NHIF at 2.75%, NSSF at 6%.
+- **Gross pay between 24,001 and 32,333**: PAYE at 25%, NHIF at 2.75%, NSSF at 6%.
+- **Gross pay between 32,334 and 500,000**: PAYE at 30%, NHIF at 2.75%, NSSF at 6%.
+- **Gross pay between 500,001 and 800,000**: PAYE at 32.5%, NHIF at 2.75%, NSSF at 6%.
+- **Gross pay > 800,000**: PAYE at 35%, NHIF at 2.75%, NSSF at 6%.
 
 ## Code
 
@@ -108,35 +108,35 @@ function toCalculateNetpay() {
 
     if (grossPay >= 0 && grossPay <= 24000) {
         paye = (grossPay * 10) / 100;
-        nhifContribution = (grossPay * 2.5) / 100;
+        nhifContribution = (grossPay * 2.75) / 100;
         nssfContribution = (grossPay * 6) / 100;
         netPay = grossPay - (paye + nhifContribution + nssfContribution) + relief;
         console.log("Your net payment is " + netPay);
     }
     else if (grossPay > 24000 && grossPay <= 32333) {
         paye = (grossPay * 25) / 100;
-        nhifContribution = (grossPay * 2.5) / 100;
+        nhifContribution = (grossPay * 2.75) / 100;
         nssfContribution = (grossPay * 6) / 100;
         netPay = grossPay - (paye + nhifContribution + nssfContribution) + relief;
         console.log("Your net payment is " + netPay);
     }
     else if (grossPay > 32333 && grossPay <= 500000) {
         paye = (grossPay * 30) / 100;
-        nhifContribution = (grossPay * 2.5) / 100;
+        nhifContribution = (grossPay * 2.75) / 100;
         nssfContribution = (grossPay * 6) / 100;
         netPay = grossPay - (paye + nhifContribution + nssfContribution) + relief;
         console.log("Your net payment is " + netPay);
     }
     else if (grossPay > 500000 && grossPay <= 800000) {
         paye = (grossPay * 32.5) / 100;
-        nhifContribution = (grossPay * 2.5) / 100;
+        nhifContribution = (grossPay * 2.75) / 100;
         nssfContribution = (grossPay * 6) / 100;
         netPay = grossPay - (paye + nhifContribution + nssfContribution) + relief;
         console.log("Your net payment is " + netPay);
     }
     else if (grossPay > 800000) {
         paye = (grossPay * 35) / 100;
-        nhifContribution = (grossPay * 2.5) / 100;
+        nhifContribution = (grossPay * 2.75) / 100;
         nssfContribution = (grossPay * 6) / 100;
         netPay = grossPay - (paye + nhifContribution + nssfContribution) + relief;
         console.log("Your net payment is " + netPay);
