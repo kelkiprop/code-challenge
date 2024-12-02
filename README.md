@@ -1,36 +1,26 @@
-# `toInputUserMarks()` Function
+# `toInputUserMarks` Function
 
 ## Description
 
-The `toInputUserMarks()` function prompts the user to enter their marks (score) and assigns a grade based on predefined criteria. The function returns a grade based on the following ranges:
+The `toInputUserMarks` function prompts the user to input marks and returns the corresponding grade based on a predefined grading scale. The function checks if the input falls within certain ranges and assigns the appropriate grade (A, B, C, D, E), or returns `"Invalid"` for invalid inputs.
 
-- **A**: Marks between 80 and 100 (exclusive)
-- **B**: Marks between 60 and 79
-- **C**: Marks between 50 and 59
-- **D**: Marks between 40 and 49
-- **E**: Marks below 40
+## Grading Scale
 
-If the input is not a valid number or is outside the expected range (negative or above 100), the function will return `"Invalid"`.
+- **A**: Marks between **80 and 100**.
+- **B**: Marks between **60 and 79**.
+- **C**: Marks between **50 and 59**.
+- **D**: Marks between **40 and 49**.
+- **E**: Marks below **40**.
+- **Invalid**: For non-numeric inputs or marks out of range.
 
-## Functionality
-
-- **Input**: The function uses the `prompt()` method to ask the user for input in the form of marks (a number).
-- **Output**: Based on the input, it returns the appropriate grade, or `"Invalid"` if the input is not a valid numeric value.
-
-## Code Example
+## Function Definition
 
 ```javascript
 function toInputUserMarks() {
-    let marks = prompt("Enter marks: ");  // Prompt for user input
-    let grade = "";  // Initialize the grade variable
+    let marks = prompt("Enter marks: ");
+    let grade = "";
 
-    // Convert marks to an integer
-    marks = parseInt(marks);
-
-    // Check if the input is a valid number
-    if (isNaN(marks)) {
-        grade = "Invalid input, please enter a valid number.";
-    } else if (marks > 79 && marks <= 100) {
+    if (marks > 79 && marks <= 100) {
         grade = "A";
     } else if (marks >= 60 && marks <= 79) {
         grade = "B";
@@ -38,17 +28,16 @@ function toInputUserMarks() {
         grade = "C";
     } else if (marks >= 40 && marks < 49) {
         grade = "D";
-    } else if (marks < 40 && marks >= 0) {
+    } else if (marks < 40) {
         grade = "E";
     } else {
-        grade = "Invalid marks range.";
+        grade = "Invalid";
     }
 
     return grade;
 }
 
-
-console.log(toInputUserMarks());  // Call the function and print the result
+# Description
 # Speed Test Function
 
 This project defines a function `ToTestSpeed()` that takes a speed input from the user, checks if it exceeds the maximum allowed speed, and calculates the number of demerit points. If the speed exceeds the limit, the function will provide feedback on whether the driver's license should be suspended or the number of demerit points accumulated.
