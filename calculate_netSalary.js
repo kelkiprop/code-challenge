@@ -6,7 +6,7 @@ function toCalculateNetpay() {
     let netPay;
 
     const relief = 2400;
-    if (grossPay >= 0 && grossPay <= 24000) {
+    if (grossPay >0 && grossPay <= 24000) {
         paye = (grossPay * 10) / 100;
         nhifContribution = (grossPay * 2.75) / 100;
         nssfContribution = (grossPay * 6) / 100;
