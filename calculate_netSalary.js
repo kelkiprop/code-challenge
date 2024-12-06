@@ -1,64 +1,61 @@
-function toCalculateNetpay() {
-    let grossPay = prompt("enter taxpayer gross pay:", "0");
-    let paye;
-    let nhifContribution;
-    let nssfContribution;
-    let netPay;
+const readline = require('readline');
 
-    const relief = 2400;
-    if (grossPay >0 && grossPay <= 24000) {
-        paye = (grossPay * 10) / 100;
-        nhifContribution = (grossPay * 2.75) / 100;
-        nssfContribution = (grossPay * 6) / 100;
-        netPay = grossPay - (paye + nhifContribution + nssfContribution) + relief;
-        console.log("your paye is " +paye);
-        console.log("your nhifContribution is " +nhifContribution);
-        console.log("your nssfContribution is " +nssfContribution);
-        console.log("your netpayment is " + netPay);
-    }
-    else if (grossPay > 24000 && grossPay <= 32333) {
-        paye = (grossPay * 25) / 100;
-        nhifContribution = (grossPay * 2.75) / 100;
-        nssfContribution = (grossPay * 6) / 100;
-        netPay = grossPay - (paye + nhifContribution + nssfContribution)+ relief;
-        console.log("your paye is " +paye);
-        console.log("your nhifContribution is " +nhifContribution);
-        console.log("your nssfContribution is " +nssfContribution);
-        console.log("your netpayment is " + netPay);
-    }
-    else if (grossPay > 32333 && grossPay <= 500000) {
-        paye = (grossPay * 30) / 100;
-        nhifContribution = (grossPay * 2.75) / 100;
-        nssfContribution = (grossPay * 6) / 100;
-        netPay = grossPay - (paye + nhifContribution + nssfContribution)+ relief;
-        console.log("your paye is " +paye);
-        console.log("your nhifContribution is " +nhifContribution);
-        console.log("your nssfContribution is " +nssfContribution);
-        console.log("your netpayment is " + netPay);
-    }
-    else if (grossPay > 500000 && grossPay <= 800000) {
-        paye = (grossPay * 32.5) / 100;
-        nhifContribution = (grossPay * 2.75) / 100;
-        nssfContribution = (grossPay * 6) / 100;
-        netPay = grossPay - (paye + nhifContribution + nssfContribution)+ relief;
-        console.log("your paye is " +paye);
-        console.log("your nhifContribution is " +nhifContribution);
-        console.log("your nssfContribution is " +nssfContribution);
-        console.log("your netpayment is " + netPay);
-    }
-    else if (grossPay > 800000) {
-        paye = (grossPay * 35) / 100;
-        nhifContribution = (grossPay * 2.75) / 100;
-        nssfContribution = (grossPay * 6) / 100;
-        netPay = grossPay - (paye + nhifContribution + nssfContribution)+ relief;
-        console.log("your paye is " +paye);
-        console.log("your nhifContribution is " +nhifContribution);
-        console.log("your nssfContribution is " +nssfContribution);
-        console.log("your netpayment is " + netPay);
-    }
-    else {
-        console.log("invalid entry");
-    }
-    return netPay
+// Create readline interface
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+function calculateNetSalary() {
+    rl.question("Enter basic salary: ", function(basicSalary) {
+        rl.question("Enter benefits: ", function(benefits) {
+            basicSalary = parseFloat(basicSalary);
+            benefits = parseFloat(benefits);
+
+            // Validate input
+            if (isNaN(basicSalary) || isNaN(benefits) || basicSalary < 0 || benefits < 0) {
+                console.log("Invalid input. Please enter positive numbers.");
+                rl.close();
+                return;
+            }
+
+            // Calculate gross salary
+            const grossSalary = basicSalary + benefits;
+
+            // Calculate PAYE (progressive tax bands)
+            let paye = 0;
+            if (grossSalary <= 24000) {
+                paye = (grossSalary * 10) / 100;
+            } else if (grossSalary <= 32333) {
+                paye = (grossSalary * 25) / 100;
+            } else if (grossSalary <= 500000) {
+                paye = (grossSalary * 30) / 100;
+            } else {
+                paye = (grossSalary * 35) / 100;
+            }
+
+            // Calculate NHIF contribution (2.75% of gross salary)
+            const nhifContribution = (grossSalary * 2.75) / 100;
+
+            // Calculate NSSF contribution (6% of gross salary)
+            const nssfContribution = (grossSalary * 6) / 100;
+
+            // Calculate net salary
+            const netSalary = grossSalary - (paye + nhifContribution + nssfContribution);
+
+            // Output results
+            console.log("\nSalary Breakdown:");
+            console.log("Basic Salary: " + basicSalary);
+            console.log("Benefits: " + benefits);
+            console.log("Gross Salary: " + grossSalary);
+            console.log("PAYE (Tax): " + paye);
+            console.log("NHIF Deduction: " + nhifContribution);
+            console.log("NSSF Deduction: " + nssfContribution);
+            console.log("Net Salary: " + netSalary.toFixed(2));
+
+            rl.close(); // Close the readline interface after processing the input
+        });
+    });
 }
-toCalculateNetpay()
+
+calculateNetSalary();
